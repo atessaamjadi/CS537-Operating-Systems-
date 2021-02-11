@@ -1,0 +1,24 @@
+In this project we used monitors synchronization to allow multiple threads to 
+communicate with shared memory.
+
+main.c creates three Queue struct pointers, four pthreads, and then waits for them to end by calling
+pthread_join().
+
+We created queue.c to initialize the Queue structs and its
+data members, as well as the necessary monitor locks and condition variables. We placed monitor locks and unlocks
+at the beginning and ends of the EnqueueString() and DequeueString() functions. In EnqueueString, we wait 
+on the condition variable for full if we are at capacity, and then signal to empty to unblock waiting threads.
+In DequeueString, we wait on the condition variable for empty if we are empty, and then signal
+to full to unblock waiting threads.
+
+We created statistics.c to update enqueueCount, enqueueTime, dequeueCount, and dequeueTime within 
+queue.c. This has its own synchronization, with monitor locks and unlocks at the beginning and end 
+of each update function.
+
+threads.c contains the methods for each thread, enqueing and dequeing strings between three queues
+until EOF is reached. writerFunc() reads from stdin and enqueues to the reader queue. 
+munch1Func() then dequeues these strings from reader and enqueues them to the munch1 queue, replacing
+each space with an '*'. munch2Func() then dequeues these and enqueues them to the munch2 queue replacing
+all lower case letters with upper. writerFunc() then dequeues the strings and prints to stdout, and
+prints number of strings processed. Each thread calls pthread_exit() when done. :)
+
