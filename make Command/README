@@ -1,0 +1,7 @@
+This program is a replication of make. The program first looks for a makefile to parse. If not it looks for a Makefile. Parser.c parses the file into seperate 
+'rules' that contain a target, possible dependencies, and commands. It prints the line number, an error message and the contents of the line if an error occurs du
+ring parsing. In graph.c, we then create a graph of all these rules, by creating nodes for every target and file within the makefile/Makefile. We check for duplicate
+targets and print an error message and exit if found. We do the same if a cycle is detected within the makefile/Makefile. If a user passes
+in a valid target, main.c sends in only that arguemement to run its commands necessary to build the target. If no target is specified 
+we run all the commands for all target and files needed to build the first target in the makefile/Makefile. A targets commands are run
+when a dependency is out of date. process.c is called within graph.c to process commands. 
