@@ -100,15 +100,11 @@ Rule **parser(FILE *fp){
         else {
             buf[bufferIndex] = '\0';
 
-            //printf("this is buf: %s\n", buf);
-
             //if target line ...
             char* str = strstr(buf, ":");
             if(str != NULL){ 
 
                 ruleIndex++;    
-
-                //fprintf(stderr, "ruleIndex + 1 is %d\n", (ruleIndex + 1));
 
                 rules = (Rule**)realloc(rules, (ruleIndex + 2) * sizeof(Rule*));
                 if(rules == NULL){
@@ -118,7 +114,6 @@ Rule **parser(FILE *fp){
 
                 rules[ruleIndex] = initRule(buf, lineNum);  
                            
-                //rules[ruleIndex]->ruleNum = ruleIndex + 1;
                 rules[ruleIndex]->targetlineNum = lineNum;
 
                 beforeWasTarget = 1;
@@ -161,8 +156,6 @@ Rule **parser(FILE *fp){
                 char *commandLine = strtok(buf, " \t");
       
                 rules[ruleIndex]->commands[commandIndex1][commandIndex2] = commandLine;
-                
-                //printf("commands[%i][%i]: %s\n", commandIndex1, commandIndex2, rules[ruleIndex]->commands[commandIndex1][commandIndex2]);
 
                 commandIndex2++;
                 
@@ -176,8 +169,6 @@ Rule **parser(FILE *fp){
                     }
 
                     rules[ruleIndex]->commands[commandIndex1][commandIndex2] = commandLine;
-
-                    //printf("commands[%i][%i]: %s\n", commandIndex1, commandIndex2, rules[ruleIndex]->commands[commandIndex1][commandIndex2]);
 
                     commandIndex2++;
                 }
@@ -194,15 +185,12 @@ Rule **parser(FILE *fp){
                 //add null pointer at end of command for execvp()
                 rules[ruleIndex]->commands[commandIndex1][commandIndex2] = NULL;
 
-                //printf("commands[%i][%i]: %s\n", commandIndex1, commandIndex2, rules[ruleIndex]->commands[commandIndex1][commandIndex2]);
-
                 beforeWasTarget = 0;
                 commandIndex1++;
                 lineNum++;   
             }
             else {
                 fprintf(stderr, "%i: Error: line did not start with a target or tab %s\n", lineNum, buf);
-                //free(buf);
                 exit(1); 
             }
         }
@@ -210,7 +198,6 @@ Rule **parser(FILE *fp){
     //if EOF, close file and return rules
     if(c == EOF){
         rules[ruleIndex + 1] = NULL;
-        //printf("this is rules at last index (should be null) %p'\n", rules[ruleIndex + 1]);
         fclose(fp);
         return rules;
     }
@@ -270,16 +257,11 @@ Rule *initRule(char *buf, int lineNum){
 
         rule->dependencies[dependIndex] = line;
 
-        //printf("dependency[%i]: %s\n", dependIndex, rule->dependencies[dependIndex]);
-
         dependIndex++;
     }
 
     //null terminate dependencies
     rule->dependencies[dependIndex] = NULL;
-
-    //printf("dependency[%i]: %s\n", dependIndex, rule->dependencies[dependIndex]);
-
 
     return rule;
 }
