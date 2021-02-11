@@ -76,19 +76,7 @@ void execute(Node *node){
             if(!WIFEXITED(status)) {
                 fprintf(stderr, "Error: the child did not exit successfully. Status: %i\n", WEXITSTATUS(status));
                 exit(1);
-            }
-            //error checking for status
-            /*
-            //if child exited normally, print status
-            else if(status == 0) {
-                fprintf(stdout, "The child exited normally with a status of: %i\n", WEXITSTATUS(status));
-
-            }
-            else {
-                fprintf(stderr, "Error: the child did not exit successfully. Status: %i\n", WEXITSTATUS(status));
-                exit(1);
-            } 
-            */  
+            }  
         } 
     }  
 }
