@@ -6,8 +6,6 @@
 #include "process.h"
 #include "graph.h"
 
-// MAKE SURE TO PRINT ERROR IF PROCESSCOMMANDS FAILS
-
 int main(int argc, char* argv[]){
     FILE *fp;
     
@@ -76,7 +74,6 @@ int main(int argc, char* argv[]){
     }
 
     //else if look for makefile or Makefile and build specification for specified rule
-
     else if(argc == 2) {
          //check to make sure the fist arguement is 537ps      
         if((fp = fopen("makefile", "r")) == NULL) {
@@ -138,26 +135,6 @@ int main(int argc, char* argv[]){
             }
         }
     }
-
-    
-
-    //THIS was the old way of running in main to test parser.c and process.c
-
-    /*
-    //Rule **rules = parser("makefile");
-    FILE *fp;
-    fp = fopen("makefile", "r");
-    Rule **rules = parser(fp);
-
-    int numRules = 0;
-    while(rules[numRules] != NULL){
-        numRules++;
-    }
-
-    for(int i = 0; i < numRules; i++){
-        execute(rules[i]);
-    }
-    */
     
     return 0;
 }
