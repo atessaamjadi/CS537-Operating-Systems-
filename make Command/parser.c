@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 // Main File:        (main.c)
 // This File:        (parser.c)
-// Other Files:      (graph.h, process.c process.h, graph.c, parser.h, )
+// Other Files:      (graph.h, process.c process.h, graph.c, parser.h)
 // Semester:         CS 537 Fall 2020
 //
 // Author:           (Atessa Amjadi, Katie Telford)
