@@ -38,8 +38,7 @@ int main(int argc, char* argv[]){
     }
 
     //look for makefile or Makefile and build specification for first rule
-    if(argc == 1) {
-        //check to make sure the fist arguement is 537ps      
+    if(argc == 1) {    
         if((fp = fopen("makefile", "r")) == NULL) {
             if((fp = fopen("Makefile", "r")) == NULL){
                 fprintf(stderr, "Error: Could not find makefile or Makefile to open'n");
@@ -96,8 +95,7 @@ int main(int argc, char* argv[]){
     }
 
     //else if look for makefile or Makefile and build specification for specified rule
-    else if(argc == 2) {
-         //check to make sure the fist arguement is 537ps      
+    else if(argc == 2) {     
         if((fp = fopen("makefile", "r")) == NULL) {
             if((fp = fopen("Makefile", "r")) == NULL){
                 fprintf(stderr, "Error: Could not find makefile or Makefile to open");
